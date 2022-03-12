@@ -22,8 +22,11 @@ Commands:
   directory  Shows all available directories for test
   run        run tests for corona.sh.
 ```
-To run script:
->./test.py run 
+To check run options:
+>./test.py run --help
+
+PS _corona.sh have to be in the same directory with test.py or look  
+write `./test.py run -f/--file <path/to/file.sh>`_
 
 
 ## Possible problems
