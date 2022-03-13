@@ -1,6 +1,26 @@
 import os
 import sys
 import logging
+from Helpers import timer
+
+
+class Test:
+    def __init__(self, expected_output_f, logger, verbose=0, length=16):
+        self.max_length = length
+        self.expected_output_f = expected_output_f
+        self.timer = None
+        self.verbose = verbose
+        self.logger = logger
+
+    def start(self):
+        if len(self.expected_output_f) > (self.max_length + 3):
+            self.logger.info(f'...{self.expected_output_f[-self.max_length:-4]}: ')
+        else:
+            self.logger.info(f'{self.expected_output_f[:-4]}: ')
+        self.timer = timer.Timer() if self.verbose >= 2 else None
+
+    def end(self):
+        self.timer.print_time() if self.timer is not None else None
 
 
 def get_logger(name, terminator='\n'):
