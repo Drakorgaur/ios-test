@@ -2,7 +2,7 @@
 **Python tests created to check ios project 1.**
 ## Disclaimer 
 
-###Please read it
+### Please read it
 
 **This test is not shows your real project correctness.**  
 It just helps you to correct your global mistakes. 
@@ -24,24 +24,10 @@ Commands:
   directory  Shows all available directories for test
   run        run tests for corona.sh.
 ```
-Run options:
-> $ ./test.py run --help  
-> 
-```
-Options:
-  -f, --file TEXT     path to .sh script  
-  -d, --switch-debug  if flag set - using python diff function instead bash
-                      diff
-  --dir TEXT          runs tests in directory. Use ./test.py directory to
-                      checkall directories available
-  -v, --verbose       set debugging level
-  --help              Show this message and exit.
-```  
+To check run options:
+>./test.py run --help
 
-Verbose level 2 turns on timer.
-
-
-PS. _corona.sh have to be in the same directory with test.py or look  
+PS _corona.sh have to be in the same directory with test.py or look  
 write `./test.py run -f/--file <path/to/file.sh>`_
 
 
