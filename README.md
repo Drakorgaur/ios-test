@@ -28,14 +28,21 @@ Run options:
 > $ ./test.py run --help  
 > 
 ```
+Usage: test.py run [OPTIONS]
+
+  run tests for corona.sh. If test in same dir with corona.sh -f/--file not
+  needed
+
 Options:
-  -f, --file TEXT     path to .sh script  
+  -f, --file TEXT     path to .sh script
   -d, --switch-debug  if flag set - using python diff function instead bash
                       diff
-  --dir TEXT          runs tests in directory. Use ./test.py directory to
+  --dir TEXT          runs tests in directory. Use `./test.py directory` to
                       checkall directories available
   -v, --verbose       set debugging level
+  -s, --stats         shows statistic at the end
   --help              Show this message and exit.
+
 ```  
 
 Verbose level 2 turns on timer.
