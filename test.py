@@ -25,11 +25,15 @@ def run(sh, debug, _dir, verbose, statistic):
     if hp.check_platform():
         logger.error('Test running currently on linux only')
         return
-    csv = hp.provide_csv()
+    csv, zip_ = hp.provide_csv()
     stats = hp.Stats()
     test = hp.Test(verbose=verbose, stats=stats, logger=logger)
-    for test_data in hp.provide_tests(_dir):
-        run_test(sh, csv[2], test_data, debug, test)
+    for test_data in hp.provide_tests(_dir, 1):
+        run_test(sh, csv[0], test_data, debug, test)
+    for test_data in hp.provide_tests(_dir, 2):
+        run_test(sh, zip_[0], test_data, debug, test)
+    for test_data in hp.provide_tests(_dir, 2):
+        run_test(sh, zip_[1], test_data, debug, test)
     stats.print_stats() if statistic else None
 
 
@@ -72,6 +76,12 @@ def timer(test):
                           encoding='utf-8', shell=True)
     sp.communicate()
     tm.print_time()
+
+
+@main_group.command()
+def test():
+    for x in hp.provide_tests(None, 2):
+        print(x)
 
 
 if __name__ == '__main__':

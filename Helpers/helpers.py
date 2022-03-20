@@ -2,6 +2,7 @@ import os
 import sys
 import logging
 from Helpers import timer
+import re
 
 
 class Stats:
@@ -37,7 +38,7 @@ class Stats:
         Tests passed : {self.passed}
         Tests failed : {self.failed}
         
-        success ratio: {(self.passed + self.failed) / self.passed * 100}%
+        success ratio: {self.passed / (self.passed + self.failed) * 100}%
         -------------------------------------------------
                total time       | {(self.time_passed + self.time_failed):0.4f}s
         ----------------------- | -----------------------
@@ -85,14 +86,22 @@ def check_platform():
 
 
 def provide_csv():
-    return [f for f in os.listdir("tests") if os.path.isfile(os.path.join("tests", f))]
+    csv, zip_ = list(), list()
+    for f in os.listdir("tests"):
+        if os.path.isfile(os.path.join("tests", f)):
+            print(f)
+            if re.search(r'csv$', f):
+                csv.append(f)
+            if '.bz2' in f or '.gz' in f:
+                zip_.append(f)
+    return csv, zip_
 
 
-def provide_tests(directory):
+def provide_tests(directory, folder):
     path = "tests" if directory is None else f"tests/{directory}"
-    for root, directories, files in os.walk(path):
+    for root, _, files in os.walk(path):
         for file in files:
-            if file.endswith('.txt'):
+            if file.endswith('.txt') and str(folder) in root:
                 yield os.path.join(root, file)
 
 
