@@ -3,7 +3,7 @@ import subprocess
 import click
 from Helpers import helpers as hp
 from Helpers import debug as db
-from Helpers import timer
+from Helpers import timer as time
 
 logger = hp.get_logger(__name__, ' ')
 
@@ -60,6 +60,18 @@ def run_test(sh, csv, expected_output_f, debug, test):
 @main_group.command(help='Shows all available directories for test')
 def directory():
     print('\n'.join(hp.get_directories()))
+
+
+@main_group.command(help='check your test\'s time\nUse timer `./corona.sh [OPTIONS] [COMMAND] [LOG1[LOG2]...]`'
+                         'full code in quotes')
+@click.argument('test')
+def timer(test):
+    tm = time.Timer()
+    tm.start()
+    sp = subprocess.Popen(test, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                          encoding='utf-8', shell=True)
+    sp.communicate()
+    tm.print_time()
 
 
 if __name__ == '__main__':

@@ -23,6 +23,7 @@ Options:
 Commands:
   directory  Shows all available directories for test
   run        run tests for corona.sh.
+  timer      check your test's time Use timer `./corona.sh [OPTIONS]...
 ```
 Run options:
 > $ ./test.py run --help  
