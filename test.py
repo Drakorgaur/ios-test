@@ -14,7 +14,7 @@ def main_group():
 
 
 @main_group.command(help='run tests for corona.sh. If test in same dir with corona.sh -f/--file not needed')
-@click.option('-f', '--file', 'sh', default='corona.sh', help='path to .sh script')
+@click.option('-f', '--file', 'sh', default='corona', help='path to .sh script')
 @click.option('-d', '--switch-debug', 'debug', is_flag=True, help='if flag set - using python diff function instead '
                                                                   'bash diff')
 @click.option('--dir', '_dir', default=None, help='runs tests in directory.\n Use `./test.py directory` to check'
